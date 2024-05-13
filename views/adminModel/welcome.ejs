@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+    <div class="home-container">
+        <% for(let order of orders) { %>
+            <div class="home-items">
+                <h1>
+                    <a href="/lakshBisenLogin/<%= order._id %>"><%= order.name %></a>
+                    <% if (!order.opened) { %>
+                        <span style="color: red;">(Unread)</span>
+                    <% } %>
+                </h1>
+                <h3><%= order.address %></h3>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
