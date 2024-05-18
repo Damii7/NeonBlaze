@@ -61,7 +61,7 @@ const adminRoutes = require("./routes/adminRoutes.js");
 app.use(express.urlencoded({ extended: true }));
 
 
-// app.use ("/pay", pay);
+app.use ("/lakshBisenNBLogin", adminRoutes);
 app.use("/", userAcc)
 app.use("/", userRoutes);
 

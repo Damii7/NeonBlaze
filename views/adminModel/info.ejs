@@ -4,14 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+       .dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+.order-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.order {
+    margin-bottom: 20px;
+}
+
+.image {
+    max-width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.text {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.link {
+    display: block;
+    margin-bottom: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+    </style>
 </head>
-<body>
+<body class="dark-mode">
     <div class="order-container">
         
         <div class="order">
             <a href="https://wa.me/+919343646600?text=Hello%20there%20I%20want%20order%20neon!">Send message on WhatsApp</a>
-
-            <img src="<%=order.filename%>" alt="image">
+             <img src="/upload/1716044565558-erol-ahmed-wKTF65TcReY-unsplash.jpg" alt="hehe">
+            <% for(let i = 0; i < order.images.length; i++) { %>
+                <img src="/upload/<%= order.images[i] %>" alt="image">
+            <% } %>
+            <h1><%=order%></h1>
             <h3>Name : <%= order.name %></h3>
             <h3>Phone no.<%= order.phone1 %></h3>
             <h3>Phone no. 2<%= order.phone2 %></h3>

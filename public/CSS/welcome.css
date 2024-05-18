@@ -1,0 +1,35 @@
+
+        body {
+            background-color: #1e1e1e;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .home-container {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .home-items {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+        }
+        h1, h3 {
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #ccc;
+        }
+        span {
+            color: red;
+            font-weight: bold;
+        }

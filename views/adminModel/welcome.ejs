@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/welcome.css">
 </head>
 <body>
     <!-- <a href="/lakshBisenLogin/bestsellers">bestsellers</a> -->
@@ -13,7 +13,7 @@
         <% for(let order of orders) { %>
             <div class="home-items">
                 <h1>
-                    <a href="/lakshBisenLogin/<%= order._id %>"><%= order.name %></a>
+                    <a href="/lakshBisenNBLogin/<%= order._id %>"><%= order.name %></a>
                     <% if (!order.opened) { %>
                         <span style="color: red;">(Unread)</span>
                     <% } %>
