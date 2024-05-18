@@ -30,15 +30,13 @@ const sessionOptions = {
 }
 app.use(session(sessionOptions));
 app.use(flash());
-const PHONE_PE_HOST_URL =  "https://api-preprod.phonepe.com/apis/pg-sandbox";
-const MERCHANT_ID = "PGTESTPAYUAT";
-const SALT_INDEX = 1;
-const SALT_KEY = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399";
-app.use((req, res, next) => {
+
+app.use((req, res, next)=> {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.currentUser = req.user; // Corrected to req.user for authenticated user
   next();
-})
+});
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(Account.authenticate()));
@@ -56,39 +54,18 @@ async function main() {
 main();
 
 
-
+const userAcc = require("./routes/userauth.js")
 const userRoutes = require("./routes/userRoutes.js");
 const adminRoutes = require("./routes/adminRoutes.js");
-
+// const pay = require("./phonePe.js");
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use("/lakshBisenLogin", adminRoutes);
+// app.use ("/pay", pay);
+app.use("/", userAcc)
 app.use("/", userRoutes);
 
 
-// app.get("/pay", (req, res) => {
-//   const payEndpoint = "pg/v1/pay";
-  
-// const options = {
-//   method: 'post',
-//   url: `${PHONE_PE_HOST_URL}${payEndpoint}`,
-//   headers: {
-//         accept: 'text/plain',
-//         'Content-Type': 'application/json',
-// 				},
-// data: {
-// }
-// };
-// axios
-//   .request(options)
-//       .then(function (response) {
-//       console.log(response.data);
-//   })
-//   .catch(function (error) {
-//     console.error(error);
-//   });
-// })
 
 app.listen(3000, () => {
     console.log("app is listening on port 3000");

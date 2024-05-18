@@ -1,0 +1,38 @@
+body {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
+    font-family: Arial, sans-serif; /* Font family */
+}
+
+form {
+    margin: 50px auto;
+    padding: 20px;
+    width: 300px;
+    background-color: #444; /* Dark form background color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Box shadow */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #555; /* Dark input background color */
+    color: #fff; /* Light input text color */
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #007bff; /* Blue button background color */
+    color: #fff; /* Light button text color */
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue button background color on hover */
+}

@@ -1,3 +1,4 @@
+const { required } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -13,8 +14,11 @@ const orderSchema = new Schema({
         
     },
     fontSize : {
-        type : Number,
+        type : String,
     
+    },
+    color : {
+        type : String,
     },
     name: {
         type: String,
@@ -32,9 +36,10 @@ const orderSchema = new Schema({
         type: String,
         required: true,
     },
-    image: {
-        type: String,
-    },
+    images : [{
+        type : String,
+        required : true
+    }],
     estimatedCost : {
         type : Number,
         required : true
@@ -49,13 +54,3 @@ const orderSchema = new Schema({
 const Request = mongoose.model("Request", orderSchema);
 
 module.exports = Request;
-//for orderform.ejs
-
-
-// const typedText = document.querySelector("#typedText");
-// const selectedText = document.querySelector("#selected");
-// const selectedSize = document.querySelector("#selectedSize");
-
-// typedText.value = textInput.value;
-// selectedSize.value = fontFamilySelect.value;
-// selectedSize.value = fontSizeInput.value;
