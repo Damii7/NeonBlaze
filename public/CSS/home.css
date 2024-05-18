@@ -1,0 +1,623 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    color:white;
+    
+}
+
+body{
+    background-color: black;
+ min-height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* /new navbar/ */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: black;
+    color: #fff;
+  }
+  li {
+    list-style: none;
+  }
+  
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* LOGO */
+  .logo {
+    font-size: 32px;
+  }
+
+  .web-logo{
+    background-image: url("./extras/logo.png");
+    background-repeat: no-repeat;
+    background-size:cover ;
+    height:14vh;
+    width:15vw;
+}
+  
+  /* NAVBAR MENU */
+  .menu {
+    display: flex;
+    gap: 1em;
+    font-size: 18px;
+  }
+  
+  .menu li:hover {
+    background-color:   rgb(31, 29, 29);
+    border-radius: 5px;
+    transition: 0.3s ease;
+  }
+  
+  .menu li {
+    padding: 5px 14px;
+  }
+  
+  /* DROPDOWN MENU */
+  .services {
+    position: relative; 
+  }
+  .services:hover .dropdown {
+    display: block;
+  }
+  
+  
+  input[type=checkbox] {
+    display: none;
+  } 
+  
+  /* HAMBURGER MENU */
+  .hamburger {
+    display: none;
+    font-size: 24px;
+    
+  }
+  
+  /* APPLYING MEDIA QUERIES */
+  @media (max-width: 768px) {
+   .menu {
+      display:none;
+      position: absolute;
+      background-color: black;
+      right: 0;
+      left: 0;
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    .web-logo{
+        background-image: url("./extras/logo.png");
+        background-repeat: no-repeat;
+        background-size:contain;
+        height:5rem;
+        width:10rem;
+        
+    }
+  
+    .menu li:hover {
+      display: inline-block;
+      background-color:rgb(31, 29, 29);
+      transition: 0.3s ease;
+    }
+  
+    .menu li + li {
+      margin-top: 12px;
+    }
+  
+    input[type=checkbox]:checked ~ .menu {
+      display: block;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  }
+
+/*new navbar finish */
+
+
+
+/* automatic slider show */
+
+.main-slidebar{
+    width:100vw;
+    height: 70vh;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+.mySlides {display: none;}
+
+.image-no1{
+    background-image: url("./extras/background-image1.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    width:100vw;
+    height:70vh;
+}
+.image-no2{
+    background-image: url("./extras/background-image2.jpg");
+    background-repeat: no-repeat;
+    background-size:cover ;
+    width:100vw;
+    height:70vh;
+}
+.image-no3{
+    background-image: url("./extras/bkd1.webp");
+    background-repeat: no-repeat;
+    background-size:contain;
+    margin-left: 35vw;
+    width:100vw;
+    height:70vh;
+    
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+}
+.fade {
+  animation-name: fade;
+  animation-duration: 2s;
+}
+@media(max-width:600px){
+    .img-1{
+        background-size: contain;
+        height: 18vh;
+    }
+    .main-slidebar{
+        height: 18vh;
+    }
+
+    }
+@media( (max-width: 600px) and (min-width: 400px)){
+        .image-no1{
+            background-size: cover;
+            height: 20vh;
+        }
+    }
+
+/*automatic slidebar css finish */
+
+/*customize btn css */
+
+.customize{ 
+    height:4rem;
+    width:25rem;
+    font-size:x-large;
+    font-weight: 400;
+    background-color: transparent; 
+    border: none;
+    color: rgba(48, 238, 5, 0.993);
+    text-align: center;
+    text-decoration: none;
+    /*display: inline-block;
+    cursor: pointer;*/
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(48, 238, 5, 0.993), inset 0 0 12px rgba(48, 238, 5, 0.993); 
+}
+
+
+.customize-btn{
+    width: 100vw;
+    height:20rem;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(109.6deg, rgb(43, 1, 91) 13.4%, rgb(122, 2, 54) 100.2%);
+}
+/*custoize button css finished */
+
+@media(max-width:600px){
+    .combine-customize-slidebar{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+
+.neon-lights-sample{
+    width:100vw;
+    height: 85rem;
+   /* border: 0.1rem solid wheat;*/
+    margin-top: 2rem;
+}
+
+.under-400{
+    width:100vw;
+    height: 25rem;
+}
+h3{
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+}
+.prize{
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.lights{
+    display: flex;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+   /* border: 0.1rem solid wheat;*/
+}
+
+.first-neon{
+    width:15rem;
+    height: 15rem;
+    background-image: url("./extras/love\ red.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+   /* border: 0.1rem solid wheat;*/
+}
+.second-neon{
+    width:15rem;
+    height: 15rem;
+    background-image: url("./extras/love-white.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+   /* border: 0.1rem solid wheat;*/
+}
+.third-neon{
+    width:15rem;
+    height: 15rem;
+    background-image: url("./extras/love\ multi.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+   /* border: 0.1rem solid wheat;*/
+}
+.fourth-neon{
+    width:15rem;
+    height: 15rem;
+    background-image: url("./extras/love-purple.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.first-9999{
+    background-image: url("./extras/multicolored\ wings\ 9999.jpg");
+}
+.second-9999{
+    background-image: url("./extras/2999-1.jpg");
+}
+.third-9999{
+    background-image: url("./extras/2999-3.jpg");
+}
+.fourth-9999{
+    background-image: url("./extras/2999-5.jpg");
+}
+.under-1899{
+    background-image: url("./extras/3999.jpg");
+}
+.under-1999{
+    background-image: url("./extras/1899.jpg");
+}
+.under-3999{
+    background-image: url("./extras/1999.jpg");
+}
+.under-2999{
+    background-image: url("./extras/never-gave.jpg");
+}
+
+@media(max-width:800px){
+    .under-400{
+        width:100vw;
+        height: 25rem;
+    }
+     .size{
+        width:8rem;
+        height:8rem;
+     } 
+
+     .lights{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+     }
+
+     h3{
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    .prize{
+        text-align: center;
+        margin-top: 0.5rem;
+        font-size: small;
+    }
+
+    }
+
+
+/*footer styling start */
+
+.footer-web{
+    width:100vw;
+    height:20rem;
+    background-color: black;
+    bottom:0;
+    display: flex;
+    flex-direction: column;
+
+}
+
+hr{
+    font-weight: 100;
+}
+
+.footer-main{
+    width:100vw;
+    height:70vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.personal-info{
+    display: flex;
+    width:30vw;
+    flex-direction: column;
+    height:7rem;
+    justify-content: space-between;
+    text-align:start;
+}
+
+.customer-quarry{
+    display: flex;
+    flex-direction: column;
+    height: 15rem;
+}
+
+.info{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.info p{
+    font-size: larger;
+    font-weight: 600;
+}
+
+.info a{
+    text-decoration: none;
+    font-size: large;
+    font-weight: 400;
+}
+
+.last-lines{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.last-lines p{
+    font-size: larger;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+@media(max-width:600px){
+    
+    .customize{
+        height:2.5rem;
+        width:13rem;
+        font-size:small;
+        font-weight: 200;
+        border-radius: 0.5rem;
+    }
+    .customize-btn{
+        width: 100vw;
+        height: 15rem;  
+      }
+
+    main{
+        height:100vh;
+        width:100vw;
+    }
+
+    .first-nav{
+        font-size: small;
+    }
+
+
+    footer{
+        margin-top: 60rem;
+    }
+
+    hr{
+        width: 85vw;
+        margin-left:1rem;
+    }
+    .footer-main{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items:flex-start;
+    }
+
+    .personal-info{
+        display: flex;
+        width:100%;
+        flex-direction: column;
+        height:10rem;
+        justify-content: space-around;
+        text-align: center;
+    }
+    
+    .last-lines p{
+        font-size:medium;
+        font-weight: 300;
+        margin-bottom: 1rem;
+    }
+    .customer-quarry a{
+        padding-left: 5%;
+        width: 90vw;
+        text-align: center;
+    }
+
+
+    main{
+        height: 100vh;
+        width: 100%;
+        background-image: url(bkd3.avif);
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+/*footer styling finish */
+
+
+
+
+/*Customise page CSS */
+
+
+
+
+
+
+label{
+    display: block;
+    font-size:x-large;
+    font-weight: 500;
+    margin-top:1rem;
+    margin-bottom:1rem;
+    overflow-x: hidden;
+    margin-left: 2rem;
+}
+
+.text-input{
+    height: 6rem;
+    width:70vw;
+    margin-left: 2rem;
+    border:0.2rem solid white;
+    background-color: black;
+    border-radius: 0.5rem;
+    font-size: larger;
+    text-align: start;
+}
+
+.font-selector{
+    display: flex;
+    height:10rem;
+    width:70vw;
+    background-color: black;
+    color: white;
+    border:0.2rem solid white;
+    flex-wrap: wrap;
+}
+
+.font-selector{
+    display: flex;
+    background-color: black;
+    color: white;
+    border:0.2rem solid white;
+    flex-wrap: wrap;
+    height:10rem;
+    width:50vw;
+}
+
+.font-option option{
+    display: inline;
+    height:2rem;
+    width:5rem;
+    background-color: black;
+    color: white;
+    border:0.2rem solid white;
+}
+
+.font-size-scroll{
+    background-color: black;
+    color: white;
+    height:3rem;
+    width:9em;
+    border-radius:0.5rem ;
+    font-size: larger;
+    margin-left: 1rem;
+    border:0.1rem solid white;
+    padding-left: 0.2rem;
+}
+
+.name-input{
+    background-color: black;
+    color: white;
+    height:3rem;
+    width:92.5vw;
+    border-radius:0.5rem ;
+    font-size: larger;
+    margin-left: 2rem;
+    border:0.1rem solid white;
+    padding-left: 0.2rem;
+}
+
+.contact-no{
+    display: flex;
+    width:100vw;
+    height:8rem;
+}
+
+
+
+.contact-input{
+    background-color: black;
+    color: white;
+    height:3rem;
+    width:45vw;
+    border-radius:0.5rem ;
+    font-size: larger;
+    margin-left: 0.2rem;
+    border:0.1rem solid white;
+    padding-left: 0.2rem;
+    margin-left: 2rem;
+}
+
+@media (max-width:700px) {
+    .contact-no{
+        display: flex;
+        flex-direction: column;
+        width:90vw;
+        height:10rem;
+    }
+    .address-label{
+        margin-top: 5rem;
+    }
+    .mar-gin{
+        margin-left: 0.3rem;
+    }
+    .name-input{
+        width:80vw;
+    }
+    .heading{
+        font-size:x-large;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+
+    }
+}
