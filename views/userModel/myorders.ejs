@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders</title>
+    <link rel="stylesheet" href="./CSS/myorders.css">
+</head>
+<body>
+    <div class="container">
+        <h1>My Orders</h1>
+        <div class="orders">
+            <% if (userOrders.length > 0) { %>
+                <ul>
+                    <% userOrders.forEach(order => { %>
+                        <li class="order-item">
+                            <div class="images">
+                                <p>Images:</p>
+                                <% order.images.forEach(image => { %>
+                                    <img src="<%= image.url %>" alt="Image" style="max-width: 300px; max-height: 300px;">
+                                <% }) %>
+                            </div>
+                            <h3>Order ID: <%= order._id %></h3>
+                            <p>Text: <%= order.textInput %></p>
+                            <p>Font Style: <%= order.fontStyle %></p>
+                            <p>Font Size: <%= order.fontSize %></p>
+                            <p>Color: <%= order.color %></p>
+                            <p>Name: <%= order.name %></p>
+                            <p>Phone 1: <%= order.phone1 %></p>
+                            <p>Phone 2: <%= order.phone2 %></p>
+                            <p>Address: <%= order.address %></p>
+                            <p>Estimated Cost: <%= order.estimatedCost %></p>
+                            <p>Opened: <%= order.opened %></p>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No orders found.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

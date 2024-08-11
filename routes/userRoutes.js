@@ -5,18 +5,10 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { orderRequest } = require("../schema.js");
 const multer = require("multer");
+const { isLoggedIn, saveRedirectUrl } = require("../middleware.js");
+const {cloudinary, storage} = require("../cloudConfig.js");
 
-// Multer configuration for file upload
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'upload/'); // Specify the directory where uploaded files will be stored
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname); // Specify the file name for uploaded files
-    }
-});
-
-const upload = multer({ storage: storage }); // Define upload before using it
+const upload = multer({storage}); // Define upload before using it
 
 // Pricing based on font size
 const pricing = {
@@ -40,9 +32,21 @@ router.get("/customize", wrapAsync((req, res) => {
     res.render("./userModel/customize.ejs", { estimatedCost });
 }));
 
-// Form submission route for customization
-router.post("/customize", upload.array("images", 2), wrapAsync(async (req, res) => {
+
+router.post("/customize", isLoggedIn, upload.array("images", 2), wrapAsync(async (req, res) => {
     try {
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).send('No files uploaded.');
+        }
+
+        // Access image URLs and filenames
+        const images = req.files.map(file => ({
+            url: file.path, // Ensure this gives the correct URL
+            fileName: file.filename
+        }));
+
+        console.log("Images: ", images); // Debug to check properties
+
         const result = orderRequest.validate(req.body);
         const { textInput, fontFamily, fontSize, selectedColor, name, phone1, phone2, address } = req.body;
 
@@ -51,9 +55,6 @@ router.post("/customize", upload.array("images", 2), wrapAsync(async (req, res) 
 
         // Calculate the estimated cost based on the number of words and font size
         const estimatedCost = words * (pricing[fontSize] || 0);
-
-        // Get the filenames of the uploaded images
-        const images = req.files.map(file => file.filename);
 
         // Create a new request object with the submitted data
         const newRequest = new Request({
@@ -65,23 +66,31 @@ router.post("/customize", upload.array("images", 2), wrapAsync(async (req, res) 
             phone1,
             phone2,
             address,
-            images,
+            owner: req.user._id,
+            images, // Set the images array here
             estimatedCost // Set the calculated estimated cost
         });
 
         // Save the new request to the database
         await newRequest.save();
 
-        // Redirect the user to the customize page with a success message
-        req.flash("success", "Success! You will be contacted shortly.");
-        res.redirect("/customize");
-
-        console.log(newRequest);
+        // Send the saved request as a response
+        res.send(newRequest);
     } catch (err) {
         console.log(err);
-        res.status(500).send("Error submitting order."); // Sending error response
+        res.status(500).send("Error submitting order.");
     }
 }));
+
+
+router.get("/ourshop", (req, res) => {
+    res.render("./userModel/comingsoon.ejs");
+})
+
+router.get("/myorders", async(req, res) => {
+   const userOrders = await Request.find({owner : req.user});
+   res.render("./userModel/myorders.ejs", {userOrders});
+})
 
 // Error handling middleware
 router.use((err, req, res, next) => {

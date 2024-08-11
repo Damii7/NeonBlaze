@@ -51,11 +51,11 @@
         
         <div class="order">
             <a href="https://wa.me/+919343646600?text=Hello%20there%20I%20want%20order%20neon!">Send message on WhatsApp</a>
-             <img src="/upload/1716044565558-erol-ahmed-wKTF65TcReY-unsplash.jpg" alt="hehe">
             <% for(let i = 0; i < order.images.length; i++) { %>
-                <img src="/upload/<%= order.images[i] %>" alt="image">
+                <%= order.images[i].originalname %>
+                <img src="<%= image.url %>" alt="Image" style="max-width: 300px; max-height: 300px;">
             <% } %>
-            <h1><%=order%></h1>
+            <h3>owner : <%=order.owner%></h3>
             <h3>Name : <%= order.name %></h3>
             <h3>Phone no.<%= order.phone1 %></h3>
             <h3>Phone no. 2<%= order.phone2 %></h3>

@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.orders {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-item {
+    background-color: #2a2a2a;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.order-item h3 {
+    margin: 0 0 10px;
+}
+
+.order-item p {
+    margin: 5px 0;
+}
+
+.images {
+    margin-top: 10px;
+}
+
+.images img {
+    max-width: 100px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.images p {
+    margin: 0 0 10px;
+    font-weight: bold;
+    color: #cccccc;
+}
+
+p {
+    color: #cccccc;
+}

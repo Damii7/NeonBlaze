@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
 <body>
-    <%= success %>
-    <%= error %>
+    
+    
     
     <!-- Popup -->
     <div class="popup" id="popup" style="display: none">
@@ -20,13 +20,24 @@
       </div>
     
     <form action="/customize" method="POST" enctype="multipart/form-data">
+
+        <!--text design start-->
+
+    <div class="textpreview-editor">
+
         <div id="textPreview"></div>
-        <div class="editor">
+        
+
+
+    <div class="editor-color">
+        <!--text design start-->
+        <div class="editor"> 
             <div class="textEdit">
+                <label class="enter-text">1. Enter your text</label>
                 <input id="textInput" name="textInput" placeholder="Enter your text..." required></input>
                 <div class="fontOptions">
-                    <label for="fontFamily" required>Font Family:</label>
-                    <select id="fontFamily" name="fontFamily">
+                    <label for="fontFamily" class="font-class" required>Font Family:</label>
+                    <select id="fontFamily" class="font-class" name="fontFamily">
                         <option value="Arial">Arial</option>
                         <option value="Verdana">Verdana</option>
                         <option value="Helvetica">Helvetica</option>
@@ -43,38 +54,50 @@
                         <option value="large">Large</option>
                     </select>
                 </div>
+
             </div>
         </div>
         <br>
+
         <div class="fontColorOptions">
             <div class="color" style="background-color: red;"></div>
             <div class="color" style="background-color: orange;"></div>
             <div class="color" style="background-color: yellow;"></div>
-            <div class="color" style="background-color: green;"></div>
-            <div class="color" style="background-color: blue;"></div>
+            <div class="color" style="background-color: green; border-radius: 50%;"></div>
+            <div class="color" style="background-color: rgb(73, 189, 221);"></div>
             <div class="color" style="background-color: purple;"></div>
-            <div class="color" style="background-color: pink;"></div>
+            <div class="color" style="background-color: rgb(238, 28, 210);"></div>
         </div>
         <input type="hidden" id="selectedColor" name="selectedColor">
         <label for="estimatedCost">Price (in rupees)</label>
         <input type="number" id="estimatedCost" name="estimatedCost" value="0" readonly>
         
         <button type="button" id="calculateCostButton">Calculate cost</button>
-        
+    
+
+    </div>
+</div>
         <hr>
         <br>
         
-        <label for="name">Name:</label>
-        <input type="text" name="name" placeholder="Enter your name" required><br>
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" placeholder="Enter your name" required><br><br>
         
-        <label for="phone1">Contact No.:</label>
-        <input type="number" name="phone1" placeholder="Enter your contact no." required><br>
-        
-        <label for="phone2">Contact No. 2:</label>
-        <input type="number" name="phone2" placeholder="Enter a different contact no." required><br>
-        
-        <label for="address">Address:</label>
-        <input type="text" name="address" placeholder="Enter your address" required><br>
+
+    <div class="contact-diff">
+        <div class="contact-one">
+        <label for="phone1">Contact No. 1 :</label><br>
+        <input type="number" name="phone1" placeholder="Enter your contact no." required><br><br>
+        </div>
+
+        <div class="contact-one">
+        <label for="phone2">Contact No. 2:</label><br>
+        <input type="number" name="phone2" placeholder="Enter a different contact no." required><br><br>
+        </div>
+    </div>
+
+        <label for="address">Address:</label><br>
+        <input type="text" name="address" placeholder="Enter your address" required><br><br>
 
         <label for="image1">Your logo (if any):</label>
         <input type="file" name="images"><br>

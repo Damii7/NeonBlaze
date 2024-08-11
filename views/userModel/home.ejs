@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Neon Blaze</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -11,6 +11,7 @@
 
     </head>
 <body >
+    <%=success%>
 
 <div style="width: 100%;">
 
@@ -18,31 +19,47 @@
    
 
     <nav class="navbar" >
+        
         <!-- LOGO -->
         <div class="logo web-logo"></div>
     
         <!-- NAVIGATION MENU -->
+        <div class="menu-login">
+            
         <ul class="nav-links">
     
           <!-- USING CHECKBOX HACK -->
           <input type="checkbox" id="checkbox_toggle" />
           <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-    
+         
           <!-- NAVIGATION MENUS -->
           <div class="menu">
-    
+           <li><div class="credentials">
+            <%if(!currentUser){%>
+                <a href="/login"><button class="log-in">Login</button></a>
+                <a href="/signup"><button class="log-in">Signup</button></a>
+                <%}%>
+                <%if(currentUser){%>
+                <a href="/logout"><button class="log-in">Logout</button></a>
+         <%}%>
+        </div></li>
+            
             <li><a href="/">Home</a></li>
             <li><a href="/">customize</a></li>
     
             <li class="services">
-              <a href="/">Our Shop</a>
+              <a href="/ourshop">Our Shop</a>
     
             </li>
     
-            <li><a href="/">Help</a></li>
-            <li><a href="/">Contact</a></li>
+            <li><a href="https://wa.me/919343646600?text=Hello%2C%20I%27m%20interested%20in%20your%20services">Enquire Us</a></li>
+            <%if(currentUser){%>
+            <li><a href="/myorders">My Orders</a></li>
+            <%}%>
           </div>
         </ul>
+        
+    </div>
       </nav>
 
     <!--new navbar -->
@@ -86,48 +103,52 @@
     </div>
 
  </div>
+
+
+ <a href="https://wa.me/919343646600?text=Hello%2C%20I%27m%20interested%20in%20your%20services"><div class="whatsaap-img">
+</div></a>
  <!--combine-slidebar and customize button finish-->
 
  <div class="neon-lights-sample">
-    <h3>Neon Lights Under 399</h3>
+    <h3>Neon Lights Under &#8377;399</h3>
     <div class="under-400 lights">
         <div class="prize-img">
         <div class="first-neon  size"></div>
-        <p class="prize">prize- 399</p>
+        <p class="prize">price- &#8377;399</p>
     </div>
     <div class="prize-img">
         <div class="second-neon size "></div>
-        <p class="prize">prize - 399</p>
+        <p class="prize">price - &#8377;399</p>
         </div>
         <div class="prize-img">
         <div class="third-neon size"></div>
-        <p class="prize">prize - 399</p>
+        <p class="prize">price - &#8377;399</p>
         </div>
         <div class="prize-img">
         <div class="fourth-neon size"></div>
-        <p class="prize">prize - 399</p>
+        <p class="prize">price - &#8377;399</p>
         </div>
     </div>
 
     <div class="under-9999 ">
-        <h3>Neon Lights Under 9999</h3>
+        <h3>Neon Lights Under &#8377;9999</h3>
         <div class="lights under-400">
           
             <div class="prize-img">
         <div class="first-neon first-9999 size"></div>
-        <p class="prize">prize - 9999</p>
+        <p class="prize">price - &#8377;9999</p>
         </div>
         <div class="prize-img">
         <div class="second-neon second-9999 size"></div>
-        <p class="prize">prize - 9999</p>
+        <p class="prize">price - &#8377;9999</p>
         </div>
         <div class="prize-img">
         <div class="third-neon third-9999 size"></div>
-        <p class="prize">prize - 9999</p>
+        <p class="prize">price - &#8377;9999</p>
         </div>
         <div class="prize-img">
         <div class="fourth-neon fourth-9999 size"></div>
-        <p class="prize">prize - 9999</p>
+        <p class="prize">price - &#8377;9999</p>
         </div>
     </div>
     </div>
@@ -138,19 +159,19 @@
 
             <div class="prize-img">
         <div class="first-neon under-1899 size"></div>
-        <p class="prize">prize - 3999</p>
+        <p class="prize">price - &#8377;3999</p>
         </div>
         <div class="prize-img">
         <div class="second-neon under-1999 size"></div>
-        <p class="prize">prize - 1999</p>
+        <p class="prize">price - &#8377;1999</p>
         </div>
         <div class="prize-img">
         <div class="third-neon under-3999 size" ></div>
-        <p class="prize">prize - 399</p>
+        <p class="prize">price - &#8377;399</p>
         </div>
         <div class="prize-img">
         <div class="fourth-neon under-2999 size"></div>
-        <p class="prize">prize - 399</p>
+        <p class="prize">price - &#8377;399</p>
         </div>
     </div>
  </div>

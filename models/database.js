@@ -1,6 +1,6 @@
-const { required } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const User = require("./userAcc");
 
 
 
@@ -37,12 +37,16 @@ const orderSchema = new Schema({
         required: true,
     },
     images : [{
-        type : String,
-        required : true
+        url: String,
+        fileName: String
     }],
     estimatedCost : {
         type : Number,
         required : true
+    },
+    owner : {
+        type : Schema.Types.ObjectId,
+        ref : "User"
     },
     opened: {
         type: Boolean,

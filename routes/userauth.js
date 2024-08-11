@@ -1,60 +1,56 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const User = require("../models/userAcc.js");
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const wrapAsync = require("../utils/wrapAsync");
-const { isLoggedIn, saveRedirectUrl } = require("../middleware.js");
-const passportLocalMongoose = require('passport-local-mongoose');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('../models/userAcc');
+const { isLoggedIn, saveRedirectUrl } = require('../middleware');
 
-// Configure Passport to use local strategy with Passport-Local-Mongoose
-passport.use(new LocalStrategy(User.authenticate()));
+// Configure Passport for the User model
+passport.use('user-local', new LocalStrategy(User.authenticate()));
 
 // Serialize user into the session
 passport.serializeUser(User.serializeUser());
-
-// Deserialize user from the session
 passport.deserializeUser(User.deserializeUser());
 
-// Signup routes
+// Registration route
 router.get("/signup", (req, res) => {
   res.render("./userModel/signup.ejs");
 });
 
-router.post("/signup", wrapAsync(async (req, res, next) => {
+router.post("/signup", async (req, res, next) => {
   try {
-    const { username, phone, password } = req.body;
-    const newUser = new User({ username, phone });
-    let registeredUser = await User.register(newUser, password);
+    const { email, username, password } = req.body;
+    const newUser = new User({ email, username });
+    const registeredUser = await User.register(newUser, password);
+    console.log("User registered: ", registeredUser);
+
     req.login(registeredUser, (err) => {
       if (err) {
         return next(err);
       }
-      req.flash("success", "Welcome to HomeMed");
+      req.flash("success", "Your account was created");
       res.redirect("/");
     });
-  } catch (e) {
-    console.log(e);
-    req.flash("error", e.message);
+  } catch (err) {
+    console.log("Error during registration:", err);
+    req.flash("error", err.message);
     res.redirect("/signup");
   }
-}));
+});
 
-// Login routes
+// Login route
 router.get("/login", (req, res) => {
   res.render("./userModel/login.ejs");
 });
 
-router.post("/login",
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    failureFlash: true
-  }), saveRedirectUrl,
-  async (req, res) => {
-    req.flash("success", "Welcome to HomeMed, You are logged-in now");
-    let redirectUrl = res.locals.redirectUrl || "/";
-    res.redirect(redirectUrl);
-  });
+router.post('/login', saveRedirectUrl, passport.authenticate('user-local', {
+  failureRedirect: '/login',
+  failureFlash: true
+}), (req, res) => {
+  console.log("Logged in user: ", req.user);
+  res.redirect(req.session.returnTo || "/");
+  delete req.session.returnTo;
+});
 
 // Logout route
 router.get("/logout", (req, res, next) => {
@@ -67,5 +63,5 @@ router.get("/logout", (req, res, next) => {
   });
 });
 
-// Export the router
+
 module.exports = router;

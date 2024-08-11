@@ -20,9 +20,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
     background-color: black;
     color: #fff;
+    box-shadow: 0 0 12px rgba(20, 20, 20, 0.3);
   }
   li {
     list-style: none;
@@ -44,6 +44,23 @@ body{
     background-size:cover ;
     height:14vh;
     width:15vw;
+   margin-bottom: 0.4rem;
+}
+
+.log-in{
+    height: 2rem;
+    width: 5rem;
+     background-color: black;
+     border:1px solid white;
+     border-radius: 0.2rem;
+     margin-right: 2rem;
+}
+
+.menu-login{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right:2rem;
 }
   
   /* NAVBAR MENU */
@@ -120,74 +137,94 @@ body{
   
     .hamburger {
       display: block;
+      right:0;
     }
+    .log-in{
+        margin-left: 2rem;
+    }
+    .menu-login{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+   
   }
 
 /*new navbar finish */
 
 
+/* /css by chatgpt/ */
 
-/* automatic slider show */
-
-.main-slidebar{
-    width:100vw;
+.main-slidebar {
+    width: 100vw;
     height: 70vh;
-    overflow-x: hidden;
+    overflow: hidden; /* Hide overflow */
     max-width: 100vw;
 }
-.mySlides {display: none;}
 
-.image-no1{
+.mySlides {
+    display: none;
+}
+
+.image-no1, .image-no2, .image-no3 {
+    background-repeat: no-repeat;
+   background-size: cover;
+    width: 100vw;
+    height: 70vh;
+}
+
+/* Specific background images */
+.image-no1 {
     background-image: url("./extras/background-image1.jpg");
-    background-repeat: no-repeat;
-    background-size:cover;
-    width:100vw;
-    height:70vh;
 }
-.image-no2{
+
+.image-no2 {
+    background-image: url("./extras/neon-light-is-hanging-wall-with-lamp-transformed.jpeg");
+}
+
+.image-no3 {
     background-image: url("./extras/background-image2.jpg");
-    background-repeat: no-repeat;
-    background-size:cover ;
-    width:100vw;
-    height:70vh;
-}
-.image-no3{
-    background-image: url("./extras/bkd1.webp");
-    background-repeat: no-repeat;
-    background-size:contain;
-    margin-left: 35vw;
-    width:100vw;
-    height:70vh;
-    
+    background-size:cover;
+     /*margin-left:35%;  Center the image horizontally */
+    margin-right: auto;
 }
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
-  position: relative;
+    width: 100vw; /* Full width */
+    height: 70vh; /* Full height */
+    position: relative;
+    overflow: hidden; /* Hide overflow */
 }
+
 .fade {
-  animation-name: fade;
-  animation-duration: 2s;
+    animation-name: fade;
+    animation-duration: 2s;
 }
-@media(max-width:600px){
-    .img-1{
-        background-size: contain;
+
+@media(max-width: 600px) {
+    .img-1 {
+        background-size:cover;
         height: 18vh;
     }
-    .main-slidebar{
+    .main-slidebar {
         height: 18vh;
+        overflow: hidden; /* Hide overflow */
     }
+}
 
+@media(min-width: 400px) and (max-width: 600px) {
+    .image-no1 {
+        background-size: cover;
+        height: 20vh;
     }
-@media( (max-width: 600px) and (min-width: 400px)){
-        .image-no1{
-            background-size: cover;
-            height: 20vh;
-        }
-    }
+}
 
-/*automatic slidebar css finish */
+
+
+/* /css by chatgpt/ */
 
 /*customize btn css */
 
@@ -207,7 +244,6 @@ body{
     box-shadow: 0 0 12px rgba(48, 238, 5, 0.993), inset 0 0 12px rgba(48, 238, 5, 0.993); 
 }
 
-
 .customize-btn{
     width: 100vw;
     height:20rem;
@@ -219,10 +255,38 @@ body{
 }
 /*custoize button css finished */
 
+.whatsaap-img{
+    height:4rem;
+    width:4rem;
+    border-radius: 50%;
+    background-image: url("./extras/wp.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+   position: fixed;
+   top:85%;
+   left: 93%;
+   box-shadow: 0 0 12px white;
+}
+
+
+
 @media(max-width:600px){
     .combine-customize-slidebar{
         display: flex;
         flex-direction: column-reverse;
+        width: 100vw;
+    }
+
+    .customize-btn{
+        height:20rem;
+    }
+
+    .whatsaap-img{
+        height:3rem;
+        width:3rem;
+        border-radius: 50%;
+       position: fixed;
+       left: 75%;
     }
 }
 
@@ -423,7 +487,7 @@ hr{
     }
     .customize-btn{
         width: 100vw;
-        height: 15rem;  
+        height: 18rem;  
       }
 
     main{
@@ -437,7 +501,7 @@ hr{
 
 
     footer{
-        margin-top: 60rem;
+        margin-top: 68rem;
     }
 
     hr{
@@ -621,3 +685,8 @@ label{
 
     }
 }
+.customize-btn {
+    background: url(./extras/3999.jpg)repeat;
+    background-color: #333333;
+    }
+    

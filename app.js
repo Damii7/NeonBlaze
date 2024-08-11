@@ -1,72 +1,81 @@
+
+if(process.env.NODE_ENV = "production"){
+  require('dotenv').config()
+
+}
+
 const express = require("express");
 const mongoose = require("mongoose");
-const app = express();
 const path = require("path");
-const Request = require("./models/database.js");
-const wrapAsync = require("./utils/wrapAsync");
-const ExpressError = require("./utils/ExpressError.js");
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
-const flash = require("connect-flash");
 const passport = require("passport");
-const LocalStrategy = require("passport-local");
-const Account = require("./models/accounts.js");
-const axios = require('axios');
-app.set("view engine", "ejs");
+const session = require("express-session");
+const MongoStore = require('connect-mongo');
+const flash = require("connect-flash");
+const cookieParser = require("cookie-parser");
+const userAuthRoutes = require("./routes/userauth");
+const adminRoutes = require("./routes/adminRoutes");
+const userRoutes = require("./routes/userRoutes");
+const app = express();
 
-app.use(express.static(path.join(__dirname, "public")));
-const { urlencoded } = require("body-parser");
-app.use(cookieParser("codeSecret"));
-
-const sessionOptions = {
-  secret : "incaseYOuhaveNT",
-  saveUninitialized : true,
-  resave : false,
-  cookie : {
-    expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
-    maxAge : 7 * 24 * 60 * 60 * 1000,
-    httpOnly : true,
-  }
-}
-app.use(session(sessionOptions));
-app.use(flash());
-
-app.use((req, res, next)=> {
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  res.locals.currentUser = req.user; // Corrected to req.user for authenticated user
-  next();
-});
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+// Database connection
+const dbUrl = process.env.ATLASDB_URL;
 async function main() {
-  try{
-    await mongoose.connect('mongodb://127.0.0.1:27017/order');
-    console.log("Database connected sucessfully");
-  }catch(err){
-    console.log("Database could not be connected : ", err);
+  try {
+    await mongoose.connect(dbUrl);
+    console.log("Database connected successfully");
+  } catch (err) {
+    console.error("Database connection error:", err);
   }
- 
 }
 main();
+const store = MongoStore.create({
+  mongoUrl : dbUrl,
+  crypto : {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24*3600, //changes in session after 24 hrs
+});
 
+store.on("error", () => {
+  console.log("error found in mongo session store");
+})
 
-const userAcc = require("./routes/userauth.js")
-const userRoutes = require("./routes/userRoutes.js");
-const adminRoutes = require("./routes/adminRoutes.js");
-// const pay = require("./phonePe.js");
+// Session configuration
+const sessionOptions = {
+  store,
+  secret: process.env.SECRET,
+  saveUninitialized: false,
+  resave: false,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // Session cookie expires in one week
+    maxAge: 7 * 24 * 60 * 60 * 1000, // Maximum age of the cookie in milliseconds (one week)
+    httpOnly: true, // The cookie is only accessible by the web server
+  },
+};
+
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
+app.use(cookieParser("codeSecret"));
 app.use(express.urlencoded({ extended: true }));
 
+app.use(session(sessionOptions));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
-app.use ("/lakshBisenNBLogin", adminRoutes);
-app.use("/", userAcc)
+// Flash messages and user info middleware
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currentUser = req.user || null;
+  next();
+});
+
+// Routes
+app.use("/", userAuthRoutes);
+app.use("/lakshBisenNBLogin", adminRoutes);
 app.use("/", userRoutes);
 
-
-
 app.listen(3000, () => {
-    console.log("app is listening on port 3000");
+  console.log("App is listening on port 3000");
 });
